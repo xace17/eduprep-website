@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EduNova | Smart Learning</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f7ff;
+    color:#172033;
+    transition:0.3s;
+}
+
+body.dark{
+    background:#0f172a;
+    color:#e5e7eb;
+}
+
+header{
+    min-height:520px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    padding:40px 20px;
+    background:
+    radial-gradient(circle at 20% 20%,#60a5fa,transparent 25%),
+    radial-gradient(circle at 80% 80%,#a78bfa,transparent 25%),
+    linear-gradient(135deg,#1d4ed8,#4f46e5,#7c3aed);
+}
+
+.hero{
+    max-width:800px;
+}
+
+.badge{
+    display:inline-block;
+    background:rgba(255,255,255,0.18);
+    padding:8px 15px;
+    border-radius:30px;
+    margin-bottom:20px;
+    backdrop-filter:blur(5px);
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:19px;
+    opacity:0.95;
+}
+
+.hero-buttons{
+    margin-top:30px;
+}
+
+.hero-buttons button{
+    padding:14px 22px;
+    border:none;
+    border-radius:10px;
+    margin:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.start{
+    background:white;
+    color:#2563eb;
+}
+
+.explore{
+    background:rgba(255,255,255,0.15);
+    color:white;
+    border:1px solid rgba(255,255,255,0.5)!important;
+}
+
+nav{
+    background:#111827;
+    padding:15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 10px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#93c5fd;
+}
+
+.dark nav{
+    background:#020617;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:35px;
+    color:#1e40af;
+}
+
+.dark .section-title{
+    color:#93c5fd;
+}
+
+.subjects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:22px;
+}
+
+.card{
+    background:white;
+    padding:28px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.dark .card{
+    background:#1e293b;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(37,99,235,0.18);
+}
+
+.card-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.search{
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.search input{
+    width:100%;
+    max-width:600px;
+    padding:15px;
+    border:2px solid #dbeafe;
+    border-radius:12px;
+    outline:none;
+    font-size:16px;
+}
+
+.dark .search input{
+    background:#1e293b;
+    color:white;
+    border-color:#334155;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    margin-top:50px;
+}
+
+.stat{
+    background:linear-gradient(135deg,#2563eb,#6366f1);
+    color:white;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+}
+
+.stat h2{
+    font-size:35px;
+}
+
+.ncert-box{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.dark .ncert-box{
+    background:#1e293b;
+}
+
+.ncert-box p{
+    margin:10px auto 20px;
+    max-width:700px;
+}
+
+.ncert-button{
+    display:inline-block;
+    padding:13px 20px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:9px;
+    margin:5px;
+}
+
+.tips{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.tip{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.07);
+}
+
+.dark .tip{
+    background:#1e293b;
+}
+
+.tip span{
+    font-size:30px;
+}
+
+.quiz{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.dark .quiz{
+    background:#1e293b;
+}
+
+.question{
+    background:#f8fafc;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:12px;
+}
+
+.dark .question{
+    background:#334155;
+}
+
+.question p{
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.quiz button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:13px 22px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#score{
+    margin-top:20px;
+    font-size:21px;
+    font-weight:bold;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.theme{
+    position:fixed;
+    right:20px;
+    top:80px;
+    z-index:100;
+    border:none;
+    background:#2563eb;
+    color:white;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+/* STUDYBOT */
+
+.ai-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    border:none;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    z-index:100;
+}
+
+.ai-box{
+    display:none;
+    position:fixed;
+    right:20px;
+    bottom:100px;
+    width:350px;
+    max-width:calc(100% - 40px);
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 35px rgba(0,0,0,0.3);
+    z-index:99;
+}
+
+.ai-header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:18px;
+}
+
+.chat{
+    height:280px;
+    overflow-y:auto;
+    padding:15px;
+    background:#f8fafc;
+}
+
+.message{
+    padding:10px 13px;
+    border-radius:13px;
+    margin-bottom:10px;
+    max-width:85%;
+    font-size:14px;
+}
+
+.bot{
+    background:#e0e7ff;
+}
+
+.user{
+    background:#2563eb;
+    color:white;
+    margin-left:auto;
+}
+
+.ai-input{
+    display:flex;
+    gap:7px;
+    padding:10px;
+}
+
+.ai-input input{
+    flex:1;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.ai-input button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 13px;
+    border-radius:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    nav a{
+        display:inline-block;
+        margin:5px;
+    }
+
+    .ai-box{
+        right:10px;
+        bottom:90px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="theme" onclick="toggleDark()">🌙</button>
+
+<header>
+
+<div class="hero">
+
+<div class="badge">
+🎓 STUDENT LEARNING PLATFORM
+</div>
+
+<h1>EduNova</h1>
+
+<p>
+Learn smarter. Practice better. Achieve more.
+</p>
+
+<div class="hero-buttons">
+
+<button class="start"
+onclick="document.getElementById('subjects').scrollIntoView()">
+🚀 Start Learning
+</button>
+
+<button class="explore"
+onclick="document.getElementById('quiz').scrollIntoView()">
+🧠 Take a Quiz
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#subjects">Subjects</a>
+<a href="#ncert">NCERT</a>
+<a href="#tips">Tips</a>
+<a href="#quiz">Quiz</a>
+
+</nav>
+
+
+<section class="container" id="subjects">
+
+<h2 class="section-title">
+📚 Explore Your Subjects
+</h2>
+
+<div class="search">
+
+<input
+type="text"
+id="search"
+placeholder="🔎 Search a subject..."
+onkeyup="searchSubjects()"
+>
+
+</div>
+
+
+<div class="subjects" id="subjectList">
+
+<div class="card">
+
+<div class="card-icon">🔬</div>
+
+<h3>Science</h3>
+
+<p>
+Explore atoms, matter, cells, motion,
+energy and the world of science.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">➗</div>
+
+<h3>Mathematics</h3>
+
+<p>
+Practice algebra, geometry, numbers
+and logical problem solving.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🌍</div>
+
+<h3>Social Science</h3>
+
+<p>
+Discover history, geography, civics
+and our changing world.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">💻</div>
+
+<h3>Computer</h3>
+
+<p>
+Learn about computers, technology,
+programming and the internet.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<h2>4+</h2>
+<p>Major Subjects</p>
+</div>
+
+<div class="stat">
+<h2>10</h2>
+<p>Quiz Questions</p>
+</div>
+
+<div class="stat">
+<h2>🤖</h2>
+<p>Study Assistant</p>
+</div>
+
+<div class="stat">
+<h2>📚</h2>
+<p>NCERT Resources</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="container" id="ncert">
+
+<h2 class="section-title">
+📖 NCERT Learning Resources
+</h2>
+
+<div class="ncert-box">
+
+<h2>Official NCERT Textbooks</h2>
+
+<p>
+Access NCERT's official textbook collection and
+find books for different classes and subjects.
+</p>
+
+<a
+class="ncert-button"
+href="https://ncert.nic.in/textbook.php"
+target="_blank">
+📚 Open NCERT Textbooks
+</a>
+
+<a
+class="ncert-button"
+href="https://ncert.nic.in/"
+target="_blank">
+🌐 Visit NCERT
+</a>
+
+</div>
+
+</section>
+
+
+<section class="container" id="tips">
+
+<h2 class="section-title">
+💡 Smart Study Tips
+</h2>
+
+<div class="tips">
+
+<div class="tip">
+<span>📅</span>
+<h3>Plan</h3>
+<p>Create a realistic timetable and follow it.</p>
+</div>
+
+<div class="tip">
+<span>🧠</span>
+<h3>Understand</h3>
+<p>Try to understand concepts instead of only memorising.</p>
+</div>
+
+<div class="tip">
+<span>🔁</span>
+<h3>Revise</h3>
+<p>Regular revision helps you remember information.</p>
+</div>
+
+<div class="tip">
+<span>✍️</span>
+<h3>Practice</h3>
+<p>Solve questions after learning a topic.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="container" id="quiz">
+
+<h2 class="section-title">
+🏆 Knowledge Challenge
+</h2>
+
+<div class="quiz">
+
+
+<div class="question">
+
+<p>1. Which planet is called the Red Planet?</p>
+
+<label>
+<input type="radio" name="q1" value="wrong">
+Earth
+</label><br>
+
+<label>
+<input type="radio" name="q1" value="correct">
+Mars
+</label><br>
+
+<label>
+<input type="radio" name="q1" value="wrong">
+Venus
+</label>
+
+</div>
+
+
+<div class="question">
+
+<p>2. What is the square root of 64?</p>
+
+<label>
+<input type="radio" name="q2" value="correct">
+8
+</label><br>
+
+<label>
+<input type="radio" name="q2" value="wrong">
+6
+</label><br>
+
+<label>
+<input type="radio" name="q2" value="wrong">
+9
+</label>
+
+</div>
+
+
+<div class="question">
+
+<p>3. What is the basic unit of life?</p>
+
+<label>
+<input type="radio" name="q3" value="correct">
+Cell
+</label><br>
+
+<label>
+<input type="radio" name="q3" value="wrong">
+Atom
+</label><br>
+
+<label>
+<input type="radio" name="q3" value="wrong">
+Organ
+</label>
+
+</div>
+
+
+<div class="question">
+
+<p>4. What does CPU stand for?</p>
+
+<label>
+<input type="radio" name="q4" value="correct">
+Central Processing Unit
+</label><br>
+
+<label>
+<input type="radio" name="q4" value="wrong">
+Computer Processing Unit
+</label><br>
+
+<label>
+<input type="radio" name="q4" value="wrong">
+Central Program Utility
+</label>
+
+</div>
+
+
+<div class="question">
+
+<p>5. Which force pulls objects toward Earth?</p>
+
+<label>
+<input type="radio" name="q5" value="correct">
+Gravity
+</label><br>
+
+<label>
+<input type="radio" name="q5" value="wrong">
+Friction
+</label><br>
+
+<label>
+<input type="radio" name="q5" value="wrong">
+Magnetism
+</label>
+
+</div>
+
+
+<div class="question">
+
+<p>6. Which gas
