@@ -1,524 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EduPrep - Student Learning Hub</title>
+    <title>StudyHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f2f6ff;
+            color: #222;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
 
-body {
-    background: #f5f7fb;
-    color: #172033;
-}
+        nav {
+            background: #1e3a8a;
+            text-align: center;
+            padding: 12px;
+        }
 
-header {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    color: white;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-}
+        section {
+            max-width: 900px;
+            margin: 25px auto;
+            padding: 20px;
+        }
 
-nav {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
 
-nav button {
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 8px;
-    font-size: 14px;
-}
+        .card {
+            background: white;
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px #ccc;
+        }
 
-.hero {
-    padding: 75px 7%;
-    background: linear-gradient(135deg, #eef2ff, #faf5ff);
-}
+        .card h3 {
+            color: #2563eb;
+        }
 
-.hero h1 {
-    font-size: 45px;
-    margin-bottom: 15px;
-}
+        .tips, .quiz {
+            background: white;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px #ccc;
+        }
 
-.hero h1 span {
-    color: #5b21b6;
-}
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+        }
 
-.hero p {
-    max-width: 650px;
-    line-height: 1.7;
-    font-size: 18px;
-    color: #475569;
-    margin-bottom: 25px;
-}
-
-.btn {
-    background: #4f46e5;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 9px;
-    cursor: pointer;
-    margin: 5px;
-    font-size: 15px;
-}
-
-.btn:hover {
-    opacity: 0.85;
-}
-
-section {
-    padding: 55px 7%;
-}
-
-.title {
-    font-size: 30px;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    color: #64748b;
-    margin-bottom: 25px;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-}
-
-.icon {
-    font-size: 35px;
-}
-
-.card h3 {
-    margin: 12px 0;
-}
-
-.card p {
-    color: #64748b;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
-.card button {
-    background: #eef2ff;
-    color: #4338ca;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.ncert {
-    background: white;
-}
-
-.ncert-card {
-    border-left: 5px solid #4f46e5;
-}
-
-.quiz-box {
-    background: white;
-    max-width: 700px;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-}
-
-.option {
-    width: 100%;
-    display: block;
-    text-align: left;
-    padding: 13px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 8px;
-    background: #f1f5f9;
-    cursor: pointer;
-}
-
-.option:hover {
-    background: #e0e7ff;
-}
-
-#result {
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-.timer {
-    background: #111827;
-    color: white;
-    max-width: 500px;
-    text-align: center;
-    padding: 30px;
-    border-radius: 18px;
-}
-
-#time {
-    font-size: 55px;
-    margin: 20px;
-}
-
-footer {
-    background: #111827;
-    color: white;
-    text-align: center;
-    padding: 30px;
-}
-
-@media(max-width:700px) {
-    header {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .hero h1 {
-        font-size: 35px;
-    }
-
-    section {
-        padding: 45px 5%;
-    }
-}
-</style>
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo">📚 EduPrep</div>
-
-    <nav>
-        <button onclick="go('home')">Home</button>
-        <button onclick="go('ncert')">NCERT</button>
-        <button onclick="go('study')">Study Hub</button>
-        <button onclick="go('quiz')">Quiz</button>
-        <button onclick="go('revision')">Revision</button>
-        <button onclick="go('timer')">Timer</button>
-    </nav>
+    <h1>📚 StudyHub</h1>
+    <p>Learn, Revise and Improve</p>
 </header>
 
-<section class="hero" id="home">
-    <h1>Study Smarter with <span>EduPrep</span></h1>
+<nav>
+    <a href="#home">Home</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#tips">Study Tips</a>
+    <a href="#quiz">Quiz</a>
+</nav>
 
+<section id="home">
+    <h2>Welcome to StudyHub!</h2>
     <p>
-        A student-friendly learning platform designed to help
-        students prepare for exams, revise important concepts,
-        practice questions and study effectively.
+        StudyHub is an educational website created to help students
+        learn different subjects and develop better study habits.
     </p>
-
-    <button class="btn" onclick="go('study')">Start Learning</button>
-    <button class="btn" onclick="go('quiz')">Take a Quiz</button>
 </section>
 
-<section>
-    <h2 class="title">Everything You Need</h2>
-    <p class="subtitle">Useful tools for smarter exam preparation.</p>
-
-    <div class="cards">
-
-        <div class="card">
-            <div class="icon">📚</div>
-            <h3>NCERT Books</h3>
-            <p>Access official NCERT textbook resources.</p>
-            <button onclick="go('ncert')">Explore</button>
-        </div>
-
-        <div class="card">
-            <div class="icon">🧠</div>
-            <h3>Quiz Zone</h3>
-            <p>Test your knowledge with quick questions.</p>
-            <button onclick="go('quiz')">Start Quiz</button>
-        </div>
-
-        <div class="card">
-            <div class="icon">⚡</div>
-            <h3>Quick Revision</h3>
-            <p>Review important concepts before exams.</p>
-            <button onclick="go('revision')">Revise</button>
-        </div>
-
-        <div class="card">
-            <div class="icon">⏱️</div>
-            <h3>Focus Timer</h3>
-            <p>Use focused study sessions with a timer.</p>
-            <button onclick="go('timer')">Start</button>
-        </div>
-
-    </div>
-</section>
-
-<section class="ncert" id="ncert">
-    <h2 class="title">📚 NCERT Resources</h2>
-    <p class="subtitle">
-        Find official NCERT textbook resources for your studies.
-    </p>
-
-    <div class="cards">
-
-        <div class="card ncert-card">
-            <div class="icon">➗</div>
-            <h3>Mathematics</h3>
-            <p>Class 9 Mathematics resources.</p>
-            <a href="https://ncert.nic.in/textbook.php" target="_blank">
-                <button>Open NCERT</button>
-            </a>
-        </div>
-
-        <div class="card ncert-card">
-            <div class="icon">🔬</div>
-            <h3>Science</h3>
-            <p>Class 9 Science resources.</p>
-            <a href="https://ncert.nic.in/textbook.php" target="_blank">
-                <button>Open NCERT</button>
-            </a>
-        </div>
-
-        <div class="card ncert-card">
-            <div class="icon">🌍</div>
-            <h3>Social Science</h3>
-            <p>History, Geography, Civics and Economics.</p>
-            <a href="https://ncert.nic.in/textbook.php" target="_blank">
-                <button>Open NCERT</button>
-            </a>
-        </div>
-
-        <div class="card ncert-card">
-            <div class="icon">📖</div>
-            <h3>English</h3>
-            <p>Class 9 English textbook resources.</p>
-            <a href="https://ncert.nic.in/textbook.php" target="_blank">
-                <button>Open NCERT</button>
-            </a>
-        </div>
-
-    </div>
-</section>
-
-<section id="study">
-    <h2 class="title">📖 Study Hub</h2>
-    <p class="subtitle">Choose a subject to start learning.</p>
-
-    <div class="cards">
-
-        <div class="card">
-            <div class="icon">➗</div>
-            <h3>Mathematics</h3>
-            <p>Concepts, formulas and practice questions.</p>
-            <button onclick="alert('Mathematics material will be added soon!')">
-                Open
-            </button>
-        </div>
-
-        <div class="card">
-            <div class="icon">🔬</div>
-            <h3>Science</h3>
-            <p>Physics, Chemistry and Biology.</p>
-            <button onclick="alert('Science material will be added soon!')">
-                Open
-            </button>
-        </div>
-
-        <div class="card">
-            <div class="icon">🌍</div>
-            <h3>Social Science</h3>
-            <p>History, Geography, Civics and Economics.</p>
-            <button onclick="alert('Social Science material will be added soon!')">
-                Open
-            </button>
-        </div>
-
-        <div class="card">
-            <div class="icon">📘</div>
-            <h3>English</h3>
-            <p>Grammar, literature and vocabulary.</p>
-            <button onclick="alert('English material will be added soon!')">
-                Open
-            </button>
-        </div>
-
-    </div>
-</section>
-
-<section id="quiz">
-    <h2 class="title">🧠 Quiz Zone</h2>
-    <p class="subtitle">Try a quick Science question.</p>
-
-    <div class="quiz-box">
-
-        <h3>What is the chemical formula of water?</h3>
-
-        <button class="option" onclick="answer(false)">CO₂</button>
-        <button class="option" onclick="answer(true)">H₂O</button>
-        <button class="option" onclick="answer(false)">O₂</button>
-        <button class="option" onclick="answer(false)">NaCl</button>
-
-        <p id="result"></p>
-
-    </div>
-</section>
-
-<section id="revision">
-    <h2 class="title">⚡ Quick Revision</h2>
-    <p class="subtitle">Important facts for quick revision.</p>
+<section id="subjects">
+    <h2>📖 Subjects</h2>
 
     <div class="cards">
 
         <div class="card">
             <h3>🔬 Science</h3>
-            <p>
-                Matter is anything that has mass and occupies space.
-            </p>
+            <p>Learn about matter, atoms, cells and the world around us.</p>
         </div>
 
         <div class="card">
             <h3>➗ Mathematics</h3>
-            <p>
-                The sum of the angles of a triangle is 180°.
-            </p>
+            <p>Improve your skills in numbers, algebra and geometry.</p>
         </div>
 
         <div class="card">
-            <h3>🌍 Geography</h3>
-            <p>
-                The Earth has different physical features and regions.
-            </p>
+            <h3>🌍 Social Science</h3>
+            <p>Explore history, geography and civics.</p>
         </div>
 
         <div class="card">
-            <h3>📖 English</h3>
-            <p>
-                A noun is a word that names a person, place, animal or thing.
-            </p>
+            <h3>💻 Computer</h3>
+            <p>Learn about computers, technology and the internet.</p>
         </div>
 
     </div>
 </section>
 
-<section id="timer">
-    <h2 class="title">⏱️ Focus Timer</h2>
-    <p class="subtitle">Focus on your studies for 25 minutes.</p>
+<section id="tips" class="tips">
+    <h2>💡 Study Tips</h2>
 
-    <div class="timer">
+    <ul>
+        <li>Make a study timetable.</li>
+        <li>Revise your lessons regularly.</li>
+        <li>Take short breaks while studying.</li>
+        <li>Practice questions regularly.</li>
+        <li>Keep your study area organized.</li>
+    </ul>
+</section>
 
-        <div id="time">25:00</div>
+<section id="quiz" class="quiz">
+    <h2>🧠 Quick Quiz</h2>
 
-        <button class="btn" onclick="startTimer()">Start</button>
-        <button class="btn" onclick="pauseTimer()">Pause</button>
-        <button class="btn" onclick="resetTimer()">Reset</button>
+    <p><b>Which planet is known as the Red Planet?</b></p>
 
-    </div>
+    <label>
+        <input type="radio" name="answer" value="Earth"> Earth
+    </label>
+
+    <br>
+
+    <label>
+        <input type="radio" name="answer" value="Mars"> Mars
+    </label>
+
+    <br>
+
+    <label>
+        <input type="radio" name="answer" value="Jupiter"> Jupiter
+    </label>
+
+    <br><br>
+
+    <button onclick="checkAnswer()">Check Answer</button>
+
+    <p id="result"></p>
 </section>
 
 <footer>
-    <h3>📚 EduPrep</h3>
-    <p>Study smarter. Revise faster. Learn better.</p>
-    <br>
-    <p>Educational website project</p>
+    <p>© 2026 StudyHub | Educational Project</p>
 </footer>
 
 <script>
+function checkAnswer() {
+    var answer = document.querySelector('input[name="answer"]:checked');
+    var result = document.getElementById("result");
 
-function go(id) {
-    document.getElementById(id).scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-function answer(correct) {
-    const result = document.getElementById("result");
-
-    if (correct) {
-        result.innerHTML = "✅ Correct! Great job!";
-        result.style.color = "green";
+    if (!answer) {
+        result.innerHTML = "Please select an answer.";
+    } else if (answer.value == "Mars") {
+        result.innerHTML = "✅ Correct!";
     } else {
         result.innerHTML = "❌ Incorrect. Try again!";
-        result.style.color = "red";
     }
 }
-
-let seconds = 25 * 60;
-let timer = null;
-
-function updateTimer() {
-
-    let minutes = Math.floor(seconds / 60);
-    let secs = seconds % 60;
-
-    if (minutes < 10) minutes = "0" + minutes;
-    if (secs < 10) secs = "0" + secs;
-
-    document.getElementById("time").innerHTML =
-        minutes + ":" + secs;
-}
-
-function startTimer() {
-
-    if (timer !== null) return;
-
-    timer = setInterval(function() {
-
-        if (seconds > 0) {
-            seconds--;
-            updateTimer();
-        } else {
-            clearInterval(timer);
-            timer = null;
-            alert("🎉 Study session completed!");
-        }
-
-    }, 1000);
-}
-
-function pauseTimer() {
-    clearInterval(timer);
-    timer = null;
-}
-
-function resetTimer() {
-
-    clearInterval(timer);
-    timer = null;
-
-    seconds = 25 * 60;
-    updateTimer();
-}
-
 </script>
 
 </body>
- </html>
+</html>
